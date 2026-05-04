@@ -4,7 +4,7 @@ Página estática de apoio à disciplina **Governança Corporativa Ambiental** (
 
 ## Como abrir
 
-Abra o arquivo `emissoes_co2_brasil.html` no navegador (duplo clique ou arrastar para o Chrome, Edge, Firefox, etc.).
+Abra o arquivo `index.html` no navegador (duplo clique ou arrastar para o Chrome, Edge, Firefox, etc.). Em um servidor local, a página costuma abrir em `/` automaticamente.
 
 > **Conexão com a internet:** o mapa carrega um GeoJSON dos estados brasileiros (CDN externo). As bibliotecas (Bootstrap, D3, Chart.js, Font Awesome, Google Fonts) também vêm de CDN.
 
@@ -12,7 +12,7 @@ Abra o arquivo `emissoes_co2_brasil.html` no navegador (duplo clique ou arrastar
 
 ```
 código/
-├── emissoes_co2_brasil.html   # página principal
+├── index.html                 # página principal
 ├── cabecalho.png               # banner do cabeçalho
 ├── logoNovoPng.png             # logo no rodapé do site
 ├── css/
