@@ -1,0 +1,1251 @@
+/* ==========================================================================
+   EMISSÕES DE CO₂ NO BRASIL POR REGIÃO - Folha de Estilos Principal
+   Tema: Governança Corporativa Ambiental
+   Fontes: SEEG / Observatório do Clima | Geometria: IBGE
+   ========================================================================== */
+
+/* ==========================================================================
+   1. VARIÁVEIS GLOBAIS E RESET
+   ========================================================================== */
+:root {
+    --color-muito-alto: #c0392b;
+    --color-alto: #e67e22;
+    --color-medio: #f1c40f;
+    --color-baixo: #58a957;
+    --color-text-dark: #2c3e50;
+    --color-bg: #f4f1e8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #e8e4d4 0%, #f4f1e8 100%);
+    color: var(--color-text-dark);
+    min-height: 100vh;
+    padding: 0;
+}
+
+/* ==========================================================================
+   2. CABEÇALHO PRINCIPAL (banner + título do programa)
+   ========================================================================== */
+.page-header {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+.page-header-banner {
+    position: relative;
+    width: 100%;
+    display: block;
+}
+
+.page-header-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.page-header-title {
+    background: linear-gradient(90deg, #1d6e44 0%, #2a8a55 50%, #1d6e44 100%);
+    color: #fff;
+    padding: 18px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.page-header-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent);
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%   { left: -100%; }
+    50%  { left: 100%; }
+    100% { left: 100%; }
+}
+
+.page-header-title h2 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 2;
+}
+
+.page-header-title h2 i {
+    color: #ffd700;
+    margin-right: 12px;
+    animation: leafSway 3s ease-in-out infinite;
+    display: inline-block;
+    transform-origin: bottom center;
+}
+
+@keyframes leafSway {
+    0%, 100% { transform: rotate(-8deg); }
+    50%      { transform: rotate(8deg); }
+}
+
+.page-header-title .subtitle-mini {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    opacity: 0.9;
+    margin-top: 6px;
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .page-header-title h2 { font-size: 1.1rem; letter-spacing: 1.5px; }
+    .page-header-title .subtitle-mini { font-size: 0.65rem; letter-spacing: 2px; }
+    .page-header-title { padding: 12px 15px; }
+}
+
+/* ==========================================================================
+   2b. RODAPÉ DO SITE (espelha o cabeçalho: gradiente verde + largura máxima)
+       ========================================================================== */
+.page-footer {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.18);
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    animation: slideUpFooter 0.75s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes slideUpFooter {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+.page-footer-title {
+    background: linear-gradient(90deg, #1d6e44 0%, #2a8a55 50%, #1d6e44 100%);
+    color: #fff;
+    padding: 16px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.25);
+}
+
+.page-footer-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.12),
+        transparent);
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+.page-footer-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+}
+
+.page-footer-logo {
+    height: 52px;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+    background: #fff;
+    padding: 4px 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+.page-footer-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+
+.page-footer-copy {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.22);
+}
+
+.page-footer-site {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffd700;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid rgba(255, 215, 0, 0.45);
+    padding-bottom: 2px;
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.page-footer-site:hover {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .page-footer-title { padding: 14px 16px; }
+    .page-footer-logo { height: 44px; max-width: 96px; padding: 3px 6px; border-radius: 8px; }
+    .page-footer-copy { font-size: 0.72rem; letter-spacing: 0.4px; }
+    .page-footer-site { font-size: 0.8rem; letter-spacing: 1.2px; }
+}
+
+/* ==========================================================================
+   3. CONTAINER PRINCIPAL E TÍTULO DO INFOGRÁFICO
+   ========================================================================== */
+.infografico {
+    background: #f4f1e8;
+    max-width: 1400px;
+    margin: 0 auto 20px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.header h1 {
+    font-weight: 900;
+    font-size: 2.5rem;
+    color: var(--color-text-dark);
+    line-height: 1;
+    margin: 0;
+}
+
+.header h1 span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.header-title-row {
+    flex-direction: row;
+}
+
+.header-seeg-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@media (max-width: 767.98px) {
+    .header-seeg-wrap {
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+}
+
+.header .subtitle {
+    font-size: 0.85rem;
+    color: #555;
+    margin-top: 12px;
+    max-width: 320px;
+    line-height: 1.4;
+}
+
+/* Subtítulo em linha única, ocupando toda a largura */
+.subtitle-fullwidth {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    line-height: 1.4;
+    margin: 0;
+    padding: 14px 22px;
+    text-align: center;
+    background: linear-gradient(90deg,
+        rgba(88, 169, 87, 0.08) 0%,
+        rgba(88, 169, 87, 0.18) 50%,
+        rgba(88, 169, 87, 0.08) 100%);
+    border-left: 4px solid var(--color-baixo);
+    border-right: 4px solid var(--color-baixo);
+    border-radius: 8px;
+    font-style: italic;
+    position: relative;
+    overflow: hidden;
+}
+
+.subtitle-fullwidth::before {
+    content: '\f06c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--color-baixo);
+    margin-right: 10px;
+    font-style: normal;
+}
+
+@media (max-width: 768px) {
+    .subtitle-fullwidth {
+        font-size: 0.85rem;
+        padding: 10px 14px;
+    }
+}
+
+/* ==========================================================================
+   4. BLOCO DA MENSAGEM AMBIENTAL + FONTE
+   ========================================================================== */
+.mensagem-fonte-bloco {
+    background: rgba(88, 169, 87, 0.15);
+    border-left: 4px solid var(--color-baixo);
+    border-radius: 6px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mensagem-fonte-bloco .mensagem-texto {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #2d5a2c;
+    font-weight: 600;
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mensagem-fonte-bloco .mensagem-texto i {
+    font-size: 1.4rem;
+    color: var(--color-baixo);
+    animation: leafSway 3s ease-in-out infinite;
+    display: inline-block;
+    transform-origin: bottom center;
+}
+
+.mensagem-fonte-bloco .fonte-info {
+    font-size: 0.72rem;
+    color: #555;
+    font-style: italic;
+    text-align: right;
+    line-height: 1.5;
+    border-left: 1px dashed rgba(88, 169, 87, 0.5);
+    padding-left: 16px;
+    min-width: 240px;
+}
+
+.mensagem-fonte-bloco .fonte-info strong {
+    color: var(--color-text-dark);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+    .mensagem-fonte-bloco .fonte-info {
+        text-align: left;
+        border-left: none;
+        border-top: 1px dashed rgba(88, 169, 87, 0.5);
+        padding-left: 0;
+        padding-top: 8px;
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   5. PAINÉIS LATERAIS (legenda, faixas)
+   ========================================================================== */
+.panel {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.panel-title {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.panel-subtitle {
+    font-size: 0.7rem;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.legenda-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dotted #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.legenda-row:last-child { border-bottom: none; }
+
+.legenda-row:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.5);
+    padding-left: 8px;
+    border-radius: 4px;
+}
+
+.legenda-color {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.legenda-label {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    flex: 1;
+}
+
+.legenda-value {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #444;
+}
+
+.total-brasil {
+    background: var(--color-text-dark);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.total-brasil strong { font-size: 1.05rem; }
+
+/* ==========================================================================
+   6. MAPA CANVAS E ELEMENTOS DECORATIVOS (oceano, rosa-dos-ventos, loader)
+   ========================================================================== */
+.mapa-wrapper {
+    position: relative;
+    background: linear-gradient(180deg, #c8dee8 0%, #e8e4d4 100%);
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 650px;
+    overflow: hidden;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.08);
+}
+
+.mapa-canvas-container {
+    position: relative;
+    width: 100%;
+    height: 650px;
+}
+
+canvas#mapaCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: block;
+}
+
+.map-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-text-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 5;
+}
+
+.map-loader .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(44, 62, 80, 0.2);
+    border-top-color: var(--color-text-dark);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.ocean-label {
+    position: absolute;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #4a7898;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    pointer-events: none;
+    z-index: 4;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+
+.ocean-atlantico { top: 60px; right: 30px; }
+.ocean-pacifico { top: 380px; left: 15px; }
+
+.compass-rose {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-text-dark);
+    font-weight: 800;
+    z-index: 5;
+    pointer-events: none;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    padding: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.compass-rose i { font-size: 1.6rem; color: #c0392b; }
+.compass-rose span { font-size: 0.85rem; }
+
+.map-attribution {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    font-size: 0.6rem;
+    color: rgba(44,62,80,0.6);
+    background: rgba(255,255,255,0.7);
+    padding: 2px 6px;
+    border-radius: 3px;
+    z-index: 4;
+}
+
+/* ==========================================================================
+   7. TOOLTIP CUSTOMIZADO
+   ========================================================================== */
+.tooltip-custom {
+    position: absolute;
+    background: rgba(44, 62, 80, 0.96);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 100;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    min-width: 220px;
+    border-left: 4px solid #ffd700;
+}
+
+.tooltip-custom.visible { opacity: 1; }
+
+.tooltip-custom h4 {
+    margin: 0 0 6px 0;
+    font-size: 0.95rem;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tooltip-custom .big-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.tooltip-custom .small-info {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   8. PAINEL DE PRINCIPAIS CIDADES (lateral direita)
+   ========================================================================== */
+.cidades-panel {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.cidades-panel h3 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin: 0 0 4px 0;
+    text-align: center;
+}
+
+.cidades-panel .panel-subtitle {
+    font-size: 0.7rem;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.regiao-cidades-titulo {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #ddd;
+}
+
+.regiao-cidades-titulo.sudeste { color: var(--color-muito-alto); border-color: var(--color-muito-alto); }
+.regiao-cidades-titulo.centro-oeste { color: var(--color-alto); border-color: var(--color-alto); }
+.regiao-cidades-titulo.nordeste { color: #c8a800; border-color: var(--color-medio); }
+.regiao-cidades-titulo.sul { color: var(--color-baixo); border-color: var(--color-baixo); }
+.regiao-cidades-titulo.norte { color: var(--color-baixo); border-color: var(--color-baixo); }
+
+.cidade-row {
+    display: flex;
+    align-items: center;
+    font-size: 0.78rem;
+    margin-bottom: 6px;
+    padding: 4px 0;
+    transition: all 0.3s ease;
+}
+
+.cidade-row:hover { transform: translateX(4px); }
+
+.cidade-numero {
+    background: var(--color-text-dark);
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+.cidade-nome {
+    min-width: 110px;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.cidade-bar-container {
+    flex: 1;
+    margin: 0 6px;
+    background: rgba(0,0,0,0.05);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cidade-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0;
+}
+
+.cidade-bar.sudeste { background: var(--color-muito-alto); }
+.cidade-bar.centro-oeste { background: var(--color-alto); }
+.cidade-bar.nordeste { background: var(--color-medio); }
+.cidade-bar.sul { background: var(--color-baixo); }
+.cidade-bar.norte { background: var(--color-baixo); }
+
+.cidade-valor {
+    font-weight: 800;
+    min-width: 35px;
+    text-align: right;
+    font-size: 0.78rem;
+}
+
+/* ==========================================================================
+   9. PAINEL RANKING TOP 20 CIDADES MAIS POLUENTES
+   ========================================================================== */
+.ranking-panel {
+    margin-top: 16px;
+    padding: 14px;
+    max-height: 540px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.ranking-panel h3 {
+    font-size: 0.88rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.ranking-panel h3 i {
+    color: #ffd700;
+    font-size: 1rem;
+}
+
+.ranking-panel::-webkit-scrollbar { width: 6px; }
+.ranking-panel::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 3px; }
+.ranking-panel::-webkit-scrollbar-thumb {
+    background: var(--color-baixo);
+    border-radius: 3px;
+}
+.ranking-panel::-webkit-scrollbar-thumb:hover { background: var(--color-text-dark); }
+
+.ranking-row {
+    display: flex;
+    align-items: center;
+    font-size: 0.72rem;
+    margin-bottom: 4px;
+    padding: 5px 6px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.ranking-row:hover {
+    background: rgba(88, 169, 87, 0.08);
+    transform: translateX(3px);
+}
+
+.ranking-row.top3 {
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.12), transparent);
+}
+
+.ranking-row.sudeste { border-left-color: var(--color-muito-alto); }
+.ranking-row.centro-oeste { border-left-color: var(--color-alto); }
+.ranking-row.nordeste { border-left-color: var(--color-medio); }
+.ranking-row.sul { border-left-color: var(--color-baixo); }
+.ranking-row.norte { border-left-color: var(--color-baixo); }
+
+.ranking-numero {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+    flex-shrink: 0;
+    background: var(--color-text-dark);
+    color: white;
+}
+
+.ranking-numero.medal-gold {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    box-shadow: 0 2px 6px rgba(255, 165, 0, 0.5);
+}
+
+.ranking-numero.medal-silver {
+    background: linear-gradient(135deg, #C0C0C0, #808080);
+    box-shadow: 0 2px 6px rgba(128, 128, 128, 0.4);
+}
+
+.ranking-numero.medal-bronze {
+    background: linear-gradient(135deg, #CD7F32, #8B4513);
+    box-shadow: 0 2px 6px rgba(139, 69, 19, 0.4);
+}
+
+.ranking-nome {
+    min-width: 100px;
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: var(--color-text-dark);
+}
+
+.ranking-uf {
+    display: inline-block;
+    font-size: 0.6rem;
+    color: #888;
+    margin-left: 2px;
+    font-weight: 600;
+}
+
+.ranking-bar-container {
+    flex: 1;
+    margin: 0 6px;
+    background: rgba(0,0,0,0.06);
+    height: 7px;
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 30px;
+}
+
+.ranking-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0;
+    position: relative;
+}
+
+.ranking-bar.sudeste { background: linear-gradient(90deg, var(--color-muito-alto), #e74c3c); }
+.ranking-bar.centro-oeste { background: linear-gradient(90deg, var(--color-alto), #f39c12); }
+.ranking-bar.nordeste { background: linear-gradient(90deg, #d4a300, var(--color-medio)); }
+.ranking-bar.sul { background: linear-gradient(90deg, #2d8048, var(--color-baixo)); }
+.ranking-bar.norte { background: linear-gradient(90deg, #2d8048, var(--color-baixo)); }
+
+.ranking-valor {
+    font-weight: 800;
+    min-width: 32px;
+    text-align: right;
+    font-size: 0.72rem;
+    color: var(--color-text-dark);
+}
+
+.ranking-footer {
+    margin-top: 10px;
+    padding: 8px 10px;
+    background: rgba(44, 62, 80, 0.05);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    color: #555;
+    text-align: center;
+    border-top: 2px solid var(--color-baixo);
+}
+
+.ranking-footer i { color: var(--color-baixo); margin-right: 4px; }
+.ranking-footer strong { color: var(--color-text-dark); font-size: 0.78rem; }
+
+/* ==========================================================================
+   10. RODAPÉ E BADGE DE FONTE
+   ========================================================================== */
+.footer {
+    border-top: 2px solid #ccc;
+    padding-top: 16px;
+    margin-top: 20px;
+    font-size: 0.7rem;
+    color: #555;
+}
+
+.footer-source {
+    font-weight: 800;
+    color: var(--color-text-dark);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.footer .badge-oc {
+    background: var(--color-baixo);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.footer .badge-oc i { font-size: 1.2rem; }
+
+.footer .mensagem {
+    background: rgba(88, 169, 87, 0.15);
+    border-left: 4px solid var(--color-baixo);
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-style: italic;
+    color: #2d5a2c;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   11. ANIMAÇÕES GLOBAIS
+   ========================================================================== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.panel, .cidades-panel {
+    animation: fadeInUp 0.6s ease backwards;
+}
+
+/* ==========================================================================
+   12. PAINEL DETALHE REGIÃO (clique no mapa - abaixo do canvas)
+   ========================================================================== */
+.detalhe-regiao-panel {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    min-height: 320px;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid #ddd;
+    transition: border-color 0.4s ease;
+}
+
+.detalhe-regiao-panel.ativo.sudeste { border-top-color: var(--color-muito-alto); }
+.detalhe-regiao-panel.ativo.centro-oeste { border-top-color: var(--color-alto); }
+.detalhe-regiao-panel.ativo.nordeste { border-top-color: var(--color-medio); }
+.detalhe-regiao-panel.ativo.sul { border-top-color: var(--color-baixo); }
+.detalhe-regiao-panel.ativo.norte { border-top-color: var(--color-baixo); }
+
+.detalhe-empty-state {
+    text-align: center;
+    color: #888;
+    padding: 60px 20px;
+}
+
+.detalhe-empty-state i {
+    font-size: 3.5rem;
+    color: #58a957;
+    margin-bottom: 14px;
+    display: block;
+    animation: pulseClick 2s ease-in-out infinite;
+}
+
+@keyframes pulseClick {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50%      { transform: scale(1.1); opacity: 1; }
+}
+
+.detalhe-empty-state h4 {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--color-text-dark);
+    margin-bottom: 6px;
+}
+
+.detalhe-empty-state p {
+    font-size: 0.85rem;
+    margin: 0;
+    font-style: italic;
+}
+
+.detalhe-content { display: none; animation: fadeInUp 0.5s ease; }
+.detalhe-regiao-panel.ativo .detalhe-content { display: block; }
+.detalhe-regiao-panel.ativo .detalhe-empty-state { display: none; }
+
+.detalhe-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #ddd;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.detalhe-titulo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detalhe-titulo .badge-regiao {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+}
+
+.detalhe-stats {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    min-width: 110px;
+    border-bottom: 3px solid #ccc;
+}
+
+.stat-card.sudeste { border-bottom-color: var(--color-muito-alto); }
+.stat-card.centro-oeste { border-bottom-color: var(--color-alto); }
+.stat-card.nordeste { border-bottom-color: var(--color-medio); }
+.stat-card.sul { border-bottom-color: var(--color-baixo); }
+.stat-card.norte { border-bottom-color: var(--color-baixo); }
+
+.stat-card .stat-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: #666;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .stat-value {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--color-text-dark);
+}
+
+.stat-card .stat-unit {
+    font-size: 0.65rem;
+    color: #888;
+    font-style: italic;
+}
+
+.detalhe-charts {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .detalhe-charts { grid-template-columns: 1fr; }
+}
+
+.chart-box {
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 12px;
+    position: relative;
+}
+
+.chart-box-title {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.chart-canvas-wrapper {
+    position: relative;
+    height: 200px;
+}
+
+.detalhe-info {
+    margin-top: 14px;
+    background: #f8f9fa;
+    border-left: 4px solid #58a957;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.detalhe-info i { color: var(--color-baixo); margin-right: 6px; }
+
+.detalhe-close {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    color: #888;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detalhe-close:hover {
+    background: var(--color-muito-alto);
+    color: white;
+    border-color: var(--color-muito-alto);
+    transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   13. BOTÃO SEEG (link para seeg.eco.br)
+   ========================================================================== */
+.btn-seeg {
+    background: linear-gradient(135deg, #58a957 0%, #2d8048 100%);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(88, 169, 87, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid transparent;
+}
+
+.btn-seeg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-seeg:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(88, 169, 87, 0.55);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-seeg:hover::before {
+    left: 100%;
+}
+
+.btn-seeg i {
+    font-size: 1.6rem;
+    color: #ffd700;
+    animation: leafSway 3s ease-in-out infinite;
+    display: inline-block;
+    transform-origin: bottom center;
+}
+
+.btn-seeg .btn-seeg-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.btn-seeg .btn-seeg-text small {
+    font-size: 0.65rem;
+    opacity: 0.85;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.3px;
+}
+
+.btn-seeg .btn-seeg-text strong {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+/* Variante compacta: ao lado do título principal do infográfico */
+.btn-seeg-compact {
+    padding: 10px 16px;
+    font-size: 0.72rem;
+    gap: 10px;
+    border-radius: 10px;
+    letter-spacing: 0.35px;
+    white-space: nowrap;
+}
+
+.btn-seeg-compact i {
+    font-size: 1.3rem;
+}
+
+.btn-seeg-compact .btn-seeg-text {
+    text-align: right;
+}
+
+.btn-seeg-compact .btn-seeg-text small {
+    font-size: 0.6rem;
+}
+
+.btn-seeg-compact .btn-seeg-text strong {
+    font-size: 0.88rem;
+}
+
+@media (max-width: 767.98px) {
+    .btn-seeg-compact {
+        white-space: normal;
+        max-width: 100%;
+        justify-content: center;
+    }
+
+    .btn-seeg-compact .btn-seeg-text {
+        text-align: left;
+    }
+}
+
+/* ==========================================================================
+   14. RESPONSIVIDADE GERAL
+   ========================================================================== */
+@media (max-width: 768px) {
+    .header h1 { font-size: 1.6rem; }
+    .header h1 span { font-size: 1.1rem; }
+    .infografico { padding: 15px; }
+    .mapa-canvas-container { height: 450px; }
+}

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emissões de CO₂ no Brasil por Região - SEEG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- ============ CABEÇALHO PRINCIPAL ============ -->
+    <header class="page-header">
+        <div class="page-header-banner">
+            <img src="cabecalho.png" alt="Programa em Desenvolvimento Local" />
+        </div>
+        <div class="page-header-title">
+            <h2><i class="fas fa-leaf"></i>GOVERNANÇA CORPORATIVA AMBIENTAL</h2>
+            <div class="subtitle-mini">DOUTORADO &middot; 2026/1</div>
+        </div>
+    </header>
+
+    <div class="infografico">
+        <!-- HEADER -->
+        <div class="row mb-3 header align-items-center g-2 header-title-row">
+            <div class="col-lg-8 col-md-7">
+                <h1>EMISSÕES DE CO<sub>2</sub><span>NO BRASIL POR REGIÃO</span></h1>
+            </div>
+            <div class="col-lg-4 col-md-5 text-md-end header-seeg-wrap">
+                <a href="https://seeg.eco.br/" target="_blank" rel="noopener noreferrer" class="btn-seeg btn-seeg-compact" title="Acessar a plataforma SEEG">
+                    <i class="fas fa-leaf"></i>
+                    <span class="btn-seeg-text">
+                        <small>Acesse a plataforma</small>
+                        <strong>SEEG.ECO.BR</strong>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <p class="subtitle-fullwidth">
+                    Distribuição das emissões de dióxido de carbono (CO<sub>2</sub>) por regiões brasileiras e principais cidades emissoras.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <!-- COLUNA ESQUERDA - LEGENDAS -->
+            <div class="col-lg-3">
+                <div class="panel">
+                    <div class="panel-title">Emissões Totais por Região <span style="font-weight:400">(2021)</span></div>
+                    <div class="panel-subtitle">Em milhões de toneladas de CO<sub>2</sub></div>
+
+                    <div class="legenda-row" data-regiao="sudeste">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-muito-alto)"></span>SUDESTE</div>
+                        <span class="legenda-value">466,2 (49,1%)</span>
+                    </div>
+                    <div class="legenda-row" data-regiao="centro-oeste">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-alto)"></span>CENTRO-OESTE</div>
+                        <span class="legenda-value">242,4 (25,6%)</span>
+                    </div>
+                    <div class="legenda-row" data-regiao="nordeste">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-medio)"></span>NORDESTE</div>
+                        <span class="legenda-value">132,1 (13,9%)</span>
+                    </div>
+                    <div class="legenda-row" data-regiao="sul">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-baixo)"></span>SUL</div>
+                        <span class="legenda-value">102,4 (10,8%)</span>
+                    </div>
+                    <div class="legenda-row" data-regiao="norte">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-baixo)"></span>NORTE</div>
+                        <span class="legenda-value">6,5 (0,7%)</span>
+                    </div>
+                    <div class="total-brasil">TOTAL BRASIL: <strong>949,6</strong> milhões de t CO<sub>2</sub></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-title">Faixas de Emissões de CO<sub>2</sub></div>
+                    <div class="panel-subtitle">Em milhões de toneladas de CO<sub>2</sub></div>
+                    <div class="legenda-row">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-muito-alto)"></span>MUITO ALTO</div>
+                        <span class="legenda-value">(acima de 100)</span>
+                    </div>
+                    <div class="legenda-row">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-alto)"></span>ALTO</div>
+                        <span class="legenda-value">(50 a 100)</span>
+                    </div>
+                    <div class="legenda-row">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-medio)"></span>MÉDIO</div>
+                        <span class="legenda-value">(10 a 50)</span>
+                    </div>
+                    <div class="legenda-row">
+                        <div class="legenda-label"><span class="legenda-color" style="background: var(--color-baixo)"></span>BAIXO</div>
+                        <span class="legenda-value">(abaixo de 10)</span>
+                    </div>
+                </div>
+
+                <!-- ============ RANKING TOP 20 CIDADES MAIS POLUENTES ============ -->
+                <div class="cidades-panel ranking-panel">
+                    <h3><i class="fas fa-trophy"></i> Top 20 Cidades Mais Poluentes do Brasil</h3>
+                    <div class="panel-subtitle">Em milhões de toneladas de CO<sub>2</sub> (2021)</div>
+
+                    <div id="ranking20-container">
+                        <!-- preenchido via JavaScript -->
+                    </div>
+
+                    <div class="ranking-footer">
+                        <i class="fas fa-info-circle"></i> Soma do top 20: <strong id="ranking-total">--</strong> milhões t CO₂
+                        <span style="opacity:0.7;">(<span id="ranking-percent">--</span>% do total nacional)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUNA CENTRAL - MAPA CANVAS -->
+            <div class="col-lg-6">
+                <div class="mapa-wrapper">
+                    <div class="ocean-label ocean-atlantico">OCEANO<br>ATLÂNTICO</div>
+                    <div class="ocean-label ocean-pacifico">OCEANO<br>PACÍFICO</div>
+                    <div class="compass-rose">
+                        <i class="fas fa-location-arrow" style="transform: rotate(-45deg);"></i>
+                        <span>N</span>
+                    </div>
+
+                    <div class="tooltip-custom" id="tooltip"></div>
+
+                    <div class="mapa-canvas-container">
+                        <div class="map-loader" id="mapLoader">
+                            <div class="spinner"></div>
+                            <div>Carregando mapa do Brasil...</div>
+                        </div>
+                        <canvas id="mapaCanvas"></canvas>
+                    </div>
+
+                    <div class="map-attribution">© IBGE / OpenStreetMap</div>
+                </div>
+
+                <!-- ============ PAINEL DETALHE REGIÃO (clique no mapa) ============ -->
+                <div class="detalhe-regiao-panel" id="detalheRegiao">
+                    <div class="detalhe-empty-state">
+                        <i class="fas fa-hand-pointer"></i>
+                        <h4>Clique em uma região do mapa</h4>
+                        <p>Visualize gráficos detalhados das emissões de CO<sub>2</sub> por cidade e o impacto regional no total nacional.</p>
+                    </div>
+
+                    <div class="detalhe-content">
+                        <div class="detalhe-header">
+                            <h3 class="detalhe-titulo">
+                                <span class="badge-regiao" id="detalheBadgeCor"></span>
+                                <span id="detalheNome">REGIÃO</span>
+                            </h3>
+                            <div class="detalhe-stats">
+                                <div class="stat-card" id="statCardEmissao">
+                                    <div class="stat-label">Emissões</div>
+                                    <div class="stat-value" id="statEmissao">--</div>
+                                    <div class="stat-unit">milhões t CO₂</div>
+                                </div>
+                                <div class="stat-card" id="statCardPercent">
+                                    <div class="stat-label">% Nacional</div>
+                                    <div class="stat-value" id="statPercent">--</div>
+                                    <div class="stat-unit">do total Brasil</div>
+                                </div>
+                                <div class="stat-card" id="statCardEstados">
+                                    <div class="stat-label">Estados</div>
+                                    <div class="stat-value" id="statEstados">--</div>
+                                    <div class="stat-unit">unidades federativas</div>
+                                </div>
+                            </div>
+                            <button class="detalhe-close" id="detalheClose" title="Fechar">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+
+                        <div class="detalhe-charts">
+                            <div class="chart-box">
+                                <div class="chart-box-title"><i class="fas fa-chart-bar"></i> Top 5 Cidades Emissoras</div>
+                                <div class="chart-canvas-wrapper">
+                                    <canvas id="chartCidades"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-box">
+                                <div class="chart-box-title"><i class="fas fa-chart-pie"></i> Participação Nacional</div>
+                                <div class="chart-canvas-wrapper">
+                                    <canvas id="chartParticipacao"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detalhe-info">
+                            <i class="fas fa-info-circle"></i>
+                            <span id="detalheInfo">Informações adicionais sobre a região.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUNA DIREITA - PRINCIPAIS CIDADES -->
+            <div class="col-lg-3">
+                <div class="cidades-panel">
+                    <h3>Principais Cidades Emissoras de CO<sub>2</sub> (2021)</h3>
+                    <div class="panel-subtitle">Em milhões de toneladas de CO<sub>2</sub></div>
+
+                    <div class="regiao-cidades-titulo sudeste">SUDESTE</div>
+                    <div class="cidade-row"><span class="cidade-numero">1</span><span class="cidade-nome">São Paulo (SP)</span><div class="cidade-bar-container"><div class="cidade-bar sudeste" data-width="100"></div></div><span class="cidade-valor">54,8</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">2</span><span class="cidade-nome">Rio de Janeiro (RJ)</span><div class="cidade-bar-container"><div class="cidade-bar sudeste" data-width="30"></div></div><span class="cidade-valor">16,5</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">3</span><span class="cidade-nome">Belo Horizonte (MG)</span><div class="cidade-bar-container"><div class="cidade-bar sudeste" data-width="24"></div></div><span class="cidade-valor">13,4</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">4</span><span class="cidade-nome">Cubatão (SP)</span><div class="cidade-bar-container"><div class="cidade-bar sudeste" data-width="19"></div></div><span class="cidade-valor">10,4</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">5</span><span class="cidade-nome">Vitória (ES)</span><div class="cidade-bar-container"><div class="cidade-bar sudeste" data-width="10"></div></div><span class="cidade-valor">5,6</span></div>
+
+                    <div class="regiao-cidades-titulo centro-oeste">CENTRO-OESTE</div>
+                    <div class="cidade-row"><span class="cidade-numero">1</span><span class="cidade-nome">Brasília (DF)</span><div class="cidade-bar-container"><div class="cidade-bar centro-oeste" data-width="100"></div></div><span class="cidade-valor">20,2</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">2</span><span class="cidade-nome">Goiânia (GO)</span><div class="cidade-bar-container"><div class="cidade-bar centro-oeste" data-width="62"></div></div><span class="cidade-valor">12,5</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">3</span><span class="cidade-nome">Cuiabá (MT)</span><div class="cidade-bar-container"><div class="cidade-bar centro-oeste" data-width="54"></div></div><span class="cidade-valor">11,0</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">4</span><span class="cidade-nome">Rondonópolis (MT)</span><div class="cidade-bar-container"><div class="cidade-bar centro-oeste" data-width="36"></div></div><span class="cidade-valor">7,2</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">5</span><span class="cidade-nome">Campo Grande (MS)</span><div class="cidade-bar-container"><div class="cidade-bar centro-oeste" data-width="33"></div></div><span class="cidade-valor">6,7</span></div>
+
+                    <div class="regiao-cidades-titulo nordeste">NORDESTE</div>
+                    <div class="cidade-row"><span class="cidade-numero">1</span><span class="cidade-nome">Fortaleza (CE)</span><div class="cidade-bar-container"><div class="cidade-bar nordeste" data-width="100"></div></div><span class="cidade-valor">7,8</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">2</span><span class="cidade-nome">Salvador (BA)</span><div class="cidade-bar-container"><div class="cidade-bar nordeste" data-width="91"></div></div><span class="cidade-valor">7,1</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">3</span><span class="cidade-nome">Suape (PE)</span><div class="cidade-bar-container"><div class="cidade-bar nordeste" data-width="66"></div></div><span class="cidade-valor">5,2</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">4</span><span class="cidade-nome">Camaçari (BA)</span><div class="cidade-bar-container"><div class="cidade-bar nordeste" data-width="59"></div></div><span class="cidade-valor">4,6</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">5</span><span class="cidade-nome">Recife (PE)</span><div class="cidade-bar-container"><div class="cidade-bar nordeste" data-width="48"></div></div><span class="cidade-valor">3,8</span></div>
+
+                    <div class="regiao-cidades-titulo sul">SUL</div>
+                    <div class="cidade-row"><span class="cidade-numero">1</span><span class="cidade-nome">Curitiba (PR)</span><div class="cidade-bar-container"><div class="cidade-bar sul" data-width="100"></div></div><span class="cidade-valor">6,6</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">2</span><span class="cidade-nome">Porto Alegre (RS)</span><div class="cidade-bar-container"><div class="cidade-bar sul" data-width="86"></div></div><span class="cidade-valor">5,7</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">3</span><span class="cidade-nome">Canoas (RS)</span><div class="cidade-bar-container"><div class="cidade-bar sul" data-width="51"></div></div><span class="cidade-valor">3,4</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">4</span><span class="cidade-nome">Joinville (SC)</span><div class="cidade-bar-container"><div class="cidade-bar sul" data-width="48"></div></div><span class="cidade-valor">3,2</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">5</span><span class="cidade-nome">Caxias do Sul (RS)</span><div class="cidade-bar-container"><div class="cidade-bar sul" data-width="42"></div></div><span class="cidade-valor">2,8</span></div>
+
+                    <div class="regiao-cidades-titulo norte">NORTE</div>
+                    <div class="cidade-row"><span class="cidade-numero">1</span><span class="cidade-nome">Manaus (AM)</span><div class="cidade-bar-container"><div class="cidade-bar norte" data-width="100"></div></div><span class="cidade-valor">1,2</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">2</span><span class="cidade-nome">Belém (PA)</span><div class="cidade-bar-container"><div class="cidade-bar norte" data-width="67"></div></div><span class="cidade-valor">0,8</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">3</span><span class="cidade-nome">Porto Velho (RO)</span><div class="cidade-bar-container"><div class="cidade-bar norte" data-width="50"></div></div><span class="cidade-valor">0,6</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">4</span><span class="cidade-nome">Rio Branco (AC)</span><div class="cidade-bar-container"><div class="cidade-bar norte" data-width="25"></div></div><span class="cidade-valor">0,3</span></div>
+                    <div class="cidade-row"><span class="cidade-numero">5</span><span class="cidade-nome">Santarém (PA)</span><div class="cidade-bar-container"><div class="cidade-bar norte" data-width="17"></div></div><span class="cidade-valor">0,2</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="mensagem-fonte-bloco">
+                    <div class="mensagem-texto">
+                        <i class="fas fa-leaf"></i>
+                        <span>A redução das emissões de CO<sub>2</sub> é essencial para o combate às mudanças climáticas e para a construção de um futuro sustentável.</span>
+                    </div>
+                    <div class="fonte-info">
+                        <strong><i class="fas fa-database"></i> Fontes</strong>
+                        SEEG / Observatório do Clima &middot; Ano-base 2021<br>
+                        Geometria: IBGE (GeoJSON oficial)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="footer-source">FONTE:</div>
+                    <p style="margin: 0; font-size: 0.75rem;">
+                        SEEG - Sistema de Estimativas de Emissões de Gases de Efeito Estufa<br>
+                        Observatório do Clima, 2023<br>
+                        <strong>Disponível em:</strong> <a href="https://seeg.eco.br" target="_blank" style="color:#2c3e50; text-decoration:none;">https://seeg.eco.br</a><br>
+                        <em>(Emissões referentes ao ano-base 2021)</em>
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <div class="footer-source">NOTAS:</div>
+                    <p style="margin: 0; font-size: 0.7rem; line-height: 1.4;">
+                        (1) Emissões de CO<sub>2</sub> provenientes da queima de combustíveis fósseis e processos industriais.<br>
+                        (2) Não inclui mudanças de uso da terra e florestas.<br>
+                        (3) Valores arredondados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ RODAPÉ DO SITE (padrão visual do cabeçalho) ============ -->
+    <footer class="page-footer" role="contentinfo">
+        <div class="page-footer-title">
+            <div class="page-footer-inner">
+                <img class="page-footer-logo" src="logoNovoPng.png" alt="Rodrigo Braga — logo" loading="lazy" decoding="async" />
+                <div class="page-footer-text-block">
+                    <span class="page-footer-copy">© 2026 Rodrigo Braga · Todos os direitos reservados.</span>
+                    <a href="https://rodrigobragatere.com" target="_blank" rel="noopener noreferrer" class="page-footer-site">rodrigobragatere.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3-geo.v3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
