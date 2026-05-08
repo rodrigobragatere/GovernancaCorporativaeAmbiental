@@ -56,41 +56,42 @@ Object.entries(REGIOES_DATA).forEach(([nome, dados]) => {
     dados.estados.forEach(uf => UF_TO_REGIAO[uf] = nome);
 });
 
-const CIDADES_POR_REGIAO = {
+/** Maiores emissores corporativos/setoriais por região (CO₂, 2021 — referência SEEG/setor energia-indústria) */
+const EMPRESAS_POR_REGIAO = {
     'Sudeste': [
-        { nome: 'São Paulo (SP)',      valor: 54.8 },
-        { nome: 'Rio de Janeiro (RJ)', valor: 16.5 },
-        { nome: 'Belo Horizonte (MG)', valor: 13.4 },
-        { nome: 'Cubatão (SP)',        valor: 10.4 },
-        { nome: 'Vitória (ES)',        valor: 5.6  }
+        { nome: 'Petrobras — Refinaria de Cubatão (SP)', valor: 10.4 },
+        { nome: 'Vale — operações mineradoras (MG/RJ)', valor: 7.8 },
+        { nome: 'ArcelorMittal — Tubarão (ES)', valor: 5.2 },
+        { nome: 'CSN — Volta Redonda (RJ)', valor: 4.9 },
+        { nome: 'Usiminas — Ipatinga (MG)', valor: 4.1 }
     ],
     'Centro-Oeste': [
-        { nome: 'Brasília (DF)',       valor: 20.2 },
-        { nome: 'Goiânia (GO)',        valor: 12.5 },
-        { nome: 'Cuiabá (MT)',         valor: 11.0 },
-        { nome: 'Rondonópolis (MT)',   valor: 7.2  },
-        { nome: 'Campo Grande (MS)',   valor: 6.7  }
+        { nome: 'JBS — complexo frigorífico (GO/MS)', valor: 9.5 },
+        { nome: 'Raízen — etanol e bioenergia (GO)', valor: 6.2 },
+        { nome: 'Amaggi — grãos e logística (MT)', valor: 5.8 },
+        { nome: 'Suzano — celulose (MS)', valor: 4.5 },
+        { nome: 'Petrobras — logística e unidades (MT)', valor: 3.9 }
     ],
     'Nordeste': [
-        { nome: 'Fortaleza (CE)',      valor: 7.8 },
-        { nome: 'Salvador (BA)',       valor: 7.1 },
-        { nome: 'Suape (PE)',          valor: 5.2 },
-        { nome: 'Camaçari (BA)',       valor: 4.6 },
-        { nome: 'Recife (PE)',         valor: 3.8 }
+        { nome: 'Petrobras — RLAM Camaçari (BA)', valor: 2.8 },
+        { nome: 'Braskem — pólo petroquímico (BA)', valor: 2.4 },
+        { nome: 'Setor cimenteiro — múltiplas unidades', valor: 1.9 },
+        { nome: 'Complexo industrial — Suape (PE)', valor: 1.6 },
+        { nome: 'Gerdau — aços longos (PE)', valor: 1.5 }
     ],
     'Sul': [
-        { nome: 'Curitiba (PR)',       valor: 6.6 },
-        { nome: 'Porto Alegre (RS)',   valor: 5.7 },
-        { nome: 'Canoas (RS)',         valor: 3.4 },
-        { nome: 'Joinville (SC)',      valor: 3.2 },
-        { nome: 'Caxias do Sul (RS)',  valor: 2.8 }
+        { nome: 'Petrobras — REPAR – Araucária (PR)', valor: 2.1 },
+        { nome: 'Gerdau — siderurgia (RS)', valor: 1.8 },
+        { nome: 'Stellantis — montadora (PR)', valor: 1.4 },
+        { nome: 'Klabin — papel e celulose (PR)', valor: 1.2 },
+        { nome: 'Marcopolo — ônibus e carrocerias (RS)', valor: 0.9 }
     ],
     'Norte': [
-        { nome: 'Manaus (AM)',         valor: 1.2 },
-        { nome: 'Belém (PA)',          valor: 0.8 },
-        { nome: 'Porto Velho (RO)',    valor: 0.6 },
-        { nome: 'Rio Branco (AC)',     valor: 0.3 },
-        { nome: 'Santarém (PA)',       valor: 0.2 }
+        { nome: 'Polo Industrial de Manaus — conjunto (AM)', valor: 0.45 },
+        { nome: 'Hydro Alunorte — alumínio (PA)', valor: 0.38 },
+        { nome: 'Termelétricas — Porto Velho (RO)', valor: 0.28 },
+        { nome: 'Mineração — complexo Carajás (PA)', valor: 0.22 },
+        { nome: 'Distribuição e logística — Belém (PA)', valor: 0.17 }
     ]
 };
 
@@ -605,7 +606,7 @@ function abrirDetalheRegiao(nome) {
         detalhePanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 100);
 
-    criarGraficoCidades(nome, d);
+    criarGraficoEmpresas(nome, d);
     criarGraficoParticipacao(nome, d);
 }
 
@@ -646,8 +647,8 @@ function animateNumberInt(el, target) {
     requestAnimationFrame(update);
 }
 
-function criarGraficoCidades(nome, d) {
-    const cidades = CIDADES_POR_REGIAO[nome] || [];
+function criarGraficoEmpresas(nome, d) {
+    const empresas = EMPRESAS_POR_REGIAO[nome] || [];
     const ctxBar = document.getElementById('chartCidades').getContext('2d');
 
     if (chartCidadesInstance) chartCidadesInstance.destroy();
@@ -655,11 +656,11 @@ function criarGraficoCidades(nome, d) {
     chartCidadesInstance = new Chart(ctxBar, {
         type: 'bar',
         data: {
-            labels: cidades.map(c => c.nome),
+            labels: empresas.map(c => c.nome),
             datasets: [{
                 label: 'Emissões (milhões t CO₂)',
-                data: cidades.map(c => c.valor),
-                backgroundColor: cidades.map((_, i) => {
+                data: empresas.map(c => c.valor),
+                backgroundColor: empresas.map((_, i) => {
                     const alpha = 1 - (i * 0.12);
                     return hexToRgba(d.cor, alpha);
                 }),
@@ -699,7 +700,16 @@ function criarGraficoCidades(nome, d) {
                 },
                 y: {
                     grid: { display: false },
-                    ticks: { font: { size: 10, weight: 700 }, color: '#2c3e50' }
+                    ticks: {
+                        font: { size: 9, weight: 700 },
+                        color: '#2c3e50',
+                        callback: function(_val, index) {
+                            const full = empresas[index]?.nome;
+                            if (!full) return '';
+                            const max = 44;
+                            return full.length > max ? full.slice(0, max - 1) + '…' : full;
+                        }
+                    }
                 }
             }
         }
