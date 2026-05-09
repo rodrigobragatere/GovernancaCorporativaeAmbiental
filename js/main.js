@@ -6,7 +6,7 @@
    ========================================================================== */
 
 /* ==========================================================================
-   1. DADOS DAS REGIÕES (SEEG / Observatório do Clima 2024)
+   1. DADOS DAS REGIÕES (SEEG / Observatório do Clima 2021)
    ========================================================================== */
 const REGIOES_DATA = {
     'Norte': {
@@ -27,7 +27,7 @@ const REGIOES_DATA = {
     },
     'Centro-Oeste': {
         slug: 'centro-oeste',
-        emissao: '242,4',
+        emissao: '212,4',
         percent: '25,6',
         cor: '#e67e22',
         faixa: 'Muito Alto (acima de 100)',
@@ -136,7 +136,7 @@ const CIDADES = [
     { num: 7,  nome: 'Belo Horizonte',  uf: 'MG', lng: -43.9378, lat: -19.9208, emissao: '13,4' },
     { num: 8,  nome: 'Curitiba',        uf: 'PR', lng: -49.2733, lat: -25.4284, emissao: '6,6'  },
     { num: 9,  nome: 'Salvador',        uf: 'BA', lng: -38.5108, lat: -12.9714, emissao: '7,1'  },
-    { num: 10, nome: 'Manaus',          uf: 'AM', lng: -60.0242, lat: -3.1190,  emissao: '1,2'  },
+    { num: 10, nome: 'Manaus',          uf: 'AM', lng: -60.0212, lat: -3.1190,  emissao: '1,2'  },
     { num: 11, nome: 'Porto Alegre',    uf: 'RS', lng: -51.2300, lat: -30.0331, emissao: '5,7'  }
 ];
 
@@ -271,8 +271,8 @@ function draw() {
     ctx.clearRect(0, 0, w, h);
 
     const oceanGrad = ctx.createLinearGradient(0, 0, 0, h);
-    oceanGrad.addColorStop(0, 'rgba(180, 240, 230, 0.4)');
-    oceanGrad.addColorStop(1, 'rgba(220, 245, 195, 0.4)');
+    oceanGrad.addColorStop(0, 'rgba(180, 210, 230, 0.4)');
+    oceanGrad.addColorStop(1, 'rgba(220, 215, 195, 0.4)');
     ctx.fillStyle = oceanGrad;
     ctx.fillRect(0, 0, w, h);
 
@@ -403,7 +403,7 @@ function desenharCidade(x, y, cidade, opacity) {
         const pulse = 1 + Math.sin(pulseTime * 0.008) * 0.15;
         ctx.beginPath();
         ctx.arc(x, y, r + 6 * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 245, 0, 0.4)';
+        ctx.fillStyle = 'rgba(255, 215, 0, 0.4)';
         ctx.fill();
     }
 
@@ -530,7 +530,7 @@ function showCidadeTooltip(c) {
     tooltip.innerHTML = `
         <h4><i class="fas fa-map-marker-alt"></i> ${c.nome} (${c.uf})</h4>
         <div class="big-num">${c.emissao}</div>
-        <div class="small-info">milhões de t CO₂ em 2024</div>
+        <div class="small-info">milhões de t CO₂ em 2021</div>
         <div class="small-info" style="margin-top:6px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.2);">
             <i class="fas fa-trophy"></i> #${c.num} no ranking nacional
         </div>

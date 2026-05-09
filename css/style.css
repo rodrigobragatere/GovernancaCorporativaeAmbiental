@@ -220,7 +220,7 @@ body {
     text-decoration: none;
     text-transform: uppercase;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-    border-bottom: 2px solid rgba(255, 245, 0, 0.45);
+    border-bottom: 2px solid rgba(255, 215, 0, 0.45);
     padding-bottom: 2px;
     transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
@@ -371,7 +371,7 @@ body {
     line-height: 1.5;
     border-left: 1px dashed rgba(88, 169, 87, 0.5);
     padding-left: 16px;
-    min-width: 240px;
+    min-width: 210px;
 }
 
 .mensagem-fonte-bloco .fonte-info strong {
@@ -777,7 +777,7 @@ canvas#mapaCanvas {
 }
 
 .ranking-row.top3 {
-    background: linear-gradient(90deg, rgba(255, 245, 0, 0.12), transparent);
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.12), transparent);
 }
 
 .ranking-row.sudeste { border-left-color: var(--color-muito-alto); }
@@ -1178,7 +1178,7 @@ canvas#mapaCanvas {
 
 .btn-seeg:hover {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 8px 24px rgba(88, 169, 87, 0.55);
+    box-shadow: 0 8px 21px rgba(88, 169, 87, 0.55);
     color: white;
     border-color: rgba(255, 255, 255, 0.4);
 }
