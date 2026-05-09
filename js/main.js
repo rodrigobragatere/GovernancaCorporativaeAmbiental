@@ -6,7 +6,7 @@
    ========================================================================== */
 
 /* ==========================================================================
-   1. DADOS DAS REGIÕES (SEEG / Observatório do Clima 2021)
+   1. DADOS DAS REGIÕES (SEEG / Observatório do Clima 2024)
    ========================================================================== */
 const REGIOES_DATA = {
     'Norte': {
@@ -56,42 +56,42 @@ Object.entries(REGIOES_DATA).forEach(([nome, dados]) => {
     dados.estados.forEach(uf => UF_TO_REGIAO[uf] = nome);
 });
 
-/** Maiores emissores corporativos/setoriais por região (CO₂, 2021 — referência SEEG/setor energia-indústria) */
+/** Maiores emissores por região: `cidade` no eixo; `empresa` aparece ao passar o mouse (CO₂, referência SEEG/setor). */
 const EMPRESAS_POR_REGIAO = {
     'Sudeste': [
-        { nome: 'Petrobras — Refinaria de Cubatão (SP)', valor: 10.4 },
-        { nome: 'Vale — operações mineradoras (MG/RJ)', valor: 7.8 },
-        { nome: 'ArcelorMittal — Tubarão (ES)', valor: 5.2 },
-        { nome: 'CSN — Volta Redonda (RJ)', valor: 4.9 },
-        { nome: 'Usiminas — Ipatinga (MG)', valor: 4.1 }
+        { cidade: 'Cubatão (SP)', empresa: 'Petrobras — Refinaria de Cubatão', valor: 10.4 },
+        { cidade: 'Rio de Janeiro (RJ)', empresa: 'Vale — operações mineradoras (MG/RJ)', valor: 7.8 },
+        { cidade: 'Serra (ES)', empresa: 'ArcelorMittal — Tubarão', valor: 5.2 },
+        { cidade: 'Volta Redonda (RJ)', empresa: 'CSN — Volta Redonda', valor: 4.9 },
+        { cidade: 'Ipatinga (MG)', empresa: 'Usiminas — Ipatinga', valor: 4.1 }
     ],
     'Centro-Oeste': [
-        { nome: 'JBS — complexo frigorífico (GO/MS)', valor: 9.5 },
-        { nome: 'Raízen — etanol e bioenergia (GO)', valor: 6.2 },
-        { nome: 'Amaggi — grãos e logística (MT)', valor: 5.8 },
-        { nome: 'Suzano — celulose (MS)', valor: 4.5 },
-        { nome: 'Petrobras — logística e unidades (MT)', valor: 3.9 }
+        { cidade: 'Campo Grande (MS)', empresa: 'JBS — complexo frigorífico (GO/MS)', valor: 9.5 },
+        { cidade: 'Rio Verde (GO)', empresa: 'Raízen — etanol e bioenergia (GO)', valor: 6.2 },
+        { cidade: 'Lucas do Rio Verde (MT)', empresa: 'Amaggi — grãos e logística (MT)', valor: 5.8 },
+        { cidade: 'Três Lagoas (MS)', empresa: 'Suzano — celulose (MS)', valor: 4.5 },
+        { cidade: 'Cuiabá (MT)', empresa: 'Petrobras — logística e unidades (MT)', valor: 3.9 }
     ],
     'Nordeste': [
-        { nome: 'Petrobras — RLAM Camaçari (BA)', valor: 2.8 },
-        { nome: 'Braskem — pólo petroquímico (BA)', valor: 2.4 },
-        { nome: 'Setor cimenteiro — múltiplas unidades', valor: 1.9 },
-        { nome: 'Complexo industrial — Suape (PE)', valor: 1.6 },
-        { nome: 'Gerdau — aços longos (PE)', valor: 1.5 }
+        { cidade: 'Camaçari (BA)', empresa: 'Petrobras — RLAM Camaçari', valor: 2.8 },
+        { cidade: 'Dias d\'Ávila (BA)', empresa: 'Braskem — pólo petroquímico (BA)', valor: 2.4 },
+        { cidade: 'Múltiplas cidades (NE)', empresa: 'Setor cimenteiro — múltiplas unidades', valor: 1.9 },
+        { cidade: 'Ipojuca (PE)', empresa: 'Complexo industrial — Suape (PE)', valor: 1.6 },
+        { cidade: 'Cabo de Santo Agostinho (PE)', empresa: 'Gerdau — aços longos (PE)', valor: 1.5 }
     ],
     'Sul': [
-        { nome: 'Petrobras — REPAR – Araucária (PR)', valor: 2.1 },
-        { nome: 'Gerdau — siderurgia (RS)', valor: 1.8 },
-        { nome: 'Stellantis — montadora (PR)', valor: 1.4 },
-        { nome: 'Klabin — papel e celulose (PR)', valor: 1.2 },
-        { nome: 'Marcopolo — ônibus e carrocerias (RS)', valor: 0.9 }
+        { cidade: 'Araucária (PR)', empresa: 'Petrobras — REPAR – Araucária', valor: 2.1 },
+        { cidade: 'Guaíba (RS)', empresa: 'Gerdau — siderurgia (RS)', valor: 1.8 },
+        { cidade: 'São José dos Pinhais (PR)', empresa: 'Stellantis — montadora (PR)', valor: 1.4 },
+        { cidade: 'Telêmaco Borba (PR)', empresa: 'Klabin — papel e celulose (PR)', valor: 1.2 },
+        { cidade: 'Caxias do Sul (RS)', empresa: 'Marcopolo — ônibus e carrocerias (RS)', valor: 0.9 }
     ],
     'Norte': [
-        { nome: 'Polo Industrial de Manaus — conjunto (AM)', valor: 0.45 },
-        { nome: 'Hydro Alunorte — alumínio (PA)', valor: 0.38 },
-        { nome: 'Termelétricas — Porto Velho (RO)', valor: 0.28 },
-        { nome: 'Mineração — complexo Carajás (PA)', valor: 0.22 },
-        { nome: 'Distribuição e logística — Belém (PA)', valor: 0.17 }
+        { cidade: 'Manaus (AM)', empresa: 'Polo Industrial de Manaus — conjunto (AM)', valor: 0.45 },
+        { cidade: 'Barcarena (PA)', empresa: 'Hydro Alunorte — alumínio (PA)', valor: 0.38 },
+        { cidade: 'Porto Velho (RO)', empresa: 'Termelétricas — Porto Velho (RO)', valor: 0.28 },
+        { cidade: 'Parauapebas (PA)', empresa: 'Mineração — complexo Carajás (PA)', valor: 0.22 },
+        { cidade: 'Belém (PA)', empresa: 'Distribuição e logística — Belém (PA)', valor: 0.17 }
     ]
 };
 
@@ -136,7 +136,7 @@ const CIDADES = [
     { num: 7,  nome: 'Belo Horizonte',  uf: 'MG', lng: -43.9378, lat: -19.9208, emissao: '13,4' },
     { num: 8,  nome: 'Curitiba',        uf: 'PR', lng: -49.2733, lat: -25.4284, emissao: '6,6'  },
     { num: 9,  nome: 'Salvador',        uf: 'BA', lng: -38.5108, lat: -12.9714, emissao: '7,1'  },
-    { num: 10, nome: 'Manaus',          uf: 'AM', lng: -60.0212, lat: -3.1190,  emissao: '1,2'  },
+    { num: 10, nome: 'Manaus',          uf: 'AM', lng: -60.0242, lat: -3.1190,  emissao: '1,2'  },
     { num: 11, nome: 'Porto Alegre',    uf: 'RS', lng: -51.2300, lat: -30.0331, emissao: '5,7'  }
 ];
 
@@ -271,8 +271,8 @@ function draw() {
     ctx.clearRect(0, 0, w, h);
 
     const oceanGrad = ctx.createLinearGradient(0, 0, 0, h);
-    oceanGrad.addColorStop(0, 'rgba(180, 210, 230, 0.4)');
-    oceanGrad.addColorStop(1, 'rgba(220, 215, 195, 0.4)');
+    oceanGrad.addColorStop(0, 'rgba(180, 240, 230, 0.4)');
+    oceanGrad.addColorStop(1, 'rgba(220, 245, 195, 0.4)');
     ctx.fillStyle = oceanGrad;
     ctx.fillRect(0, 0, w, h);
 
@@ -403,7 +403,7 @@ function desenharCidade(x, y, cidade, opacity) {
         const pulse = 1 + Math.sin(pulseTime * 0.008) * 0.15;
         ctx.beginPath();
         ctx.arc(x, y, r + 6 * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.4)';
+        ctx.fillStyle = 'rgba(255, 245, 0, 0.4)';
         ctx.fill();
     }
 
@@ -530,7 +530,7 @@ function showCidadeTooltip(c) {
     tooltip.innerHTML = `
         <h4><i class="fas fa-map-marker-alt"></i> ${c.nome} (${c.uf})</h4>
         <div class="big-num">${c.emissao}</div>
-        <div class="small-info">milhões de t CO₂ em 2021</div>
+        <div class="small-info">milhões de t CO₂ em 2024</div>
         <div class="small-info" style="margin-top:6px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.2);">
             <i class="fas fa-trophy"></i> #${c.num} no ranking nacional
         </div>
@@ -656,7 +656,7 @@ function criarGraficoEmpresas(nome, d) {
     chartCidadesInstance = new Chart(ctxBar, {
         type: 'bar',
         data: {
-            labels: empresas.map(c => c.nome),
+            labels: empresas.map(c => c.cidade),
             datasets: [{
                 label: 'Emissões (milhões t CO₂)',
                 data: empresas.map(c => c.valor),
@@ -674,6 +674,9 @@ function criarGraficoEmpresas(nome, d) {
             indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: { left: 10, right: 14, top: 8, bottom: 8 }
+            },
             animation: {
                 duration: 1200,
                 easing: 'easeOutCubic'
@@ -684,10 +687,17 @@ function criarGraficoEmpresas(nome, d) {
                     backgroundColor: 'rgba(44,62,80,0.95)',
                     titleColor: '#ffd700',
                     bodyColor: '#fff',
-                    padding: 10,
+                    padding: 12,
                     borderColor: d.cor,
                     borderWidth: 2,
+                    titleFont: { size: 13, weight: '700' },
+                    bodyFont: { size: 12 },
+                    titleSpacing: 8,
                     callbacks: {
+                        title: (items) => {
+                            const i = items[0]?.dataIndex;
+                            return (i != null && empresas[i]) ? empresas[i].empresa : '';
+                        },
                         label: ctx => `${ctx.parsed.x.toLocaleString('pt-BR', {minimumFractionDigits:1})} milhões t CO₂`
                     }
                 }
@@ -700,15 +710,13 @@ function criarGraficoEmpresas(nome, d) {
                 },
                 y: {
                     grid: { display: false },
+                    border: { display: false },
                     ticks: {
-                        font: { size: 9, weight: 700 },
+                        autoSkip: false,
+                        font: { size: 10, weight: 600, family: "'Montserrat', sans-serif" },
                         color: '#2c3e50',
-                        callback: function(_val, index) {
-                            const full = empresas[index]?.nome;
-                            if (!full) return '';
-                            const max = 44;
-                            return full.length > max ? full.slice(0, max - 1) + '…' : full;
-                        }
+                        padding: 10,
+                        mirror: false
                     }
                 }
             }
